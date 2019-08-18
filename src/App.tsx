@@ -1,11 +1,9 @@
-import React from 'react';
+import React from "react";
+import Repos from "./components/repos"
 
 const App: React.FC = () => {
-  return (
-    <div>
-      This is a React app
-    </div>
-  );
-}
+  return <Repos />;
+};
 
 export default App;
+
