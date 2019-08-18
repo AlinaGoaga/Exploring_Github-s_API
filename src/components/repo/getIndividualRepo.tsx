@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Repo } from "./repoInterface";
-import { Service } from "./serviceInterface";
+import { Repo } from "../repos/repoInterface";
+import { Service } from "../repos/serviceInterface";
 
-const GetRepos = ({ user = "" }) => {
-  const [result, setResult] = useState<Service<Array<Repo>>>({
+const GetRepo = ({ url = "" }) => {
+  const [result, setResult] = useState<Service<Repo>>({
     status: "loading"
   });
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${user}/repos`)
+    fetch(`${url}`)
       .then(response => response.json())
       .then(response => setResult({ status: "loaded", payload: response }))
       .catch(error => setResult({ status: "error", error }));
@@ -17,4 +17,4 @@ const GetRepos = ({ user = "" }) => {
   return result;
 };
 
-export default GetRepos;
+export default GetRepo;
