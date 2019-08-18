@@ -2,7 +2,8 @@ import React from "react";
 import GetRepos from "./getAllRepos";
 
 const Repos: React.FC<{}> = () => {
-  const service = GetRepos();
+  const user = "alinagoaga";
+  const service = GetRepos({user: user});
 
   return (
     <>
