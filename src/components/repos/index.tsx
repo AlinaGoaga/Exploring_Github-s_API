@@ -1,5 +1,6 @@
 import React from "react";
 import GetRepos from "./getAllRepos";
+import { List } from "semantic-ui-react";
 import Repo from "../repo";
 
 const Repos: React.FC<{}> = () => {
@@ -9,11 +10,21 @@ const Repos: React.FC<{}> = () => {
 
   return (
     <>
-      {service.status === "loading" && <div>Loading</div>}
-      {service.status === "loaded" &&
-        service.payload.map(repo => <Repo url={repo.url} token={token}/>)}
-
-      {service.status === "error" && <div>Something went wrong.</div>}
+        {service.status === "loading" && <div>Loading</div>}
+        {service.status === "loaded" && (
+          <List>
+            {service.payload.map(repo => (
+              <List.Item>
+                <Repo
+                  name={repo.name}
+                  description={repo.description}
+                  url={repo.html_url}
+                />
+              </List.Item>
+            ))}
+          </List>
+        )}
+        {service.status === "error" && <div>Something went wrong.</div>}
     </>
   );
 };

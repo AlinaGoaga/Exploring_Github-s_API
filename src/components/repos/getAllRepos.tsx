@@ -7,7 +7,7 @@ const GetRepos = ({ user = "", token = "" }) => {
     status: "loading"
   });
   let headers = {};
-  if (token != "") {
+  if (token !== "") {
     headers = { Authorization: `token ${token}` };
   }
 

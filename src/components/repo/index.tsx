@@ -1,30 +1,37 @@
 import React from "react";
-import GetRepo from "./getIndividualRepo";
-import { Modal, Header, Button } from "semantic-ui-react";
+import { useState } from "react";
+import { Modal, Header, Button, Icon } from "semantic-ui-react";
 
 export interface Props {
+  name: string;
+  description: string;
   url: string;
-  token: string;
 }
 
-const Repo: React.FC<Props> = ({ url, token }) => {
-  const link = url;
-  const service = GetRepo({ url: link, token: token });
+const Repo: React.FC<Props> = ({ name, description, url }) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
-      {service.status === "loading" && <div>Loading</div>}
-      {service.status === "loaded" && (
-        <Modal
-          trigger={<Button>{service.payload.name}</Button>}
-          basic
-          size="small"
-        >
-          <Header content={service.payload.id} />
-          <Modal.Content>{service.payload.name}</Modal.Content>
-        </Modal>
-      )}
-      {service.status === "error" && <div>Something went wrong.</div>}
+      <Modal
+        open={modalOpen}
+        trigger={<Button onClick={() => setModalOpen(true)}>{name}</Button>}
+        basic
+        size="small"
+      >
+        <Header
+          icon="browser"
+          content={description || "No description available"}
+        />
+        <Modal.Content>
+          <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={() => setModalOpen(false)} inverted>
+            <Icon name="checkmark" /> Close
+          </Button>
+        </Modal.Actions>
+      </Modal>
     </>
   );
 };
