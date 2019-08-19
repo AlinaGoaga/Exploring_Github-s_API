@@ -2,6 +2,20 @@ version: 2
 
 jobs:
 
+  test:
+    docker:
+      - image: circleci/node:10.16.0
+    steps:
+      - run: npm install
+      - run: npm test
+
+  lint:
+    docker:
+      - image: circleci/node:10.16.0
+    steps:
+      - run: npm install
+      - run:  tslint src/**/*.ts{,x} 
+
   build:
     docker:
       # specify the version you desire here
@@ -31,14 +45,3 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-  test:
-    docker:
-      - image: circleci/node:10.16.0
-    steps:
-      - run: npm test
-
-  lint:
-    docker:
-      - image: circleci/node:10.16.0
-    steps:
-      - run:  tslint src/**/*.ts{,x} 
