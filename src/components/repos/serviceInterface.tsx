@@ -1,20 +1,20 @@
-interface ServiceInit {
+interface IServiceInit {
   status: "init";
 }
-interface ServiceLoading {
+interface IServiceLoading {
   status: "loading";
 }
-interface ServiceLoaded<T> {
+interface IServiceLoaded<T> {
   status: "loaded";
   payload: T;
 }
-interface ServiceError {
+interface IServiceError {
   status: "error";
   error: Error;
 }
 
-export type Service<T> =
-  | ServiceInit
-  | ServiceLoading
-  | ServiceLoaded<T>
-  | ServiceError;
+export type IService<T> =
+  | IServiceInit
+  | IServiceLoading
+  | IServiceLoaded<T>
+  | IServiceError;

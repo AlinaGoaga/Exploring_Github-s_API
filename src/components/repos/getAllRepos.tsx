@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Repo } from "./repoInterface";
-import { Service } from "./serviceInterface";
+import { IRepo } from "./repoInterface";
+import { IService } from "./serviceInterface";
 
 const GetRepos = ({ user = "", token = "" }) => {
-  const [result, setResult] = useState<Service<Array<Repo>>>({
-    status: "loading"
+  const [result, setResult] = useState<IService<Array<IRepo>>>({
+    status: "loading",
   });
   let headers = {};
   if (token !== "") {
@@ -13,7 +13,7 @@ const GetRepos = ({ user = "", token = "" }) => {
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${user}/repos`, {
-      headers: headers
+      headers,
     })
       .then(response => response.json())
       .then(response => setResult({ status: "loaded", payload: response }))

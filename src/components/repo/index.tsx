@@ -2,13 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { Modal, Header, Button, Icon } from "semantic-ui-react";
 
-export interface Props {
+export interface IProps {
   name: string;
   description: string;
   url: string;
 }
 
-const Repo: React.FC<Props> = ({ name, description, url }) => {
+const Repo: React.FC<IProps> = ({ name, description, url }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -24,7 +24,9 @@ const Repo: React.FC<Props> = ({ name, description, url }) => {
           content={description || "No description available"}
         />
         <Modal.Content>
-          <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {url}
+          </a>
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={() => setModalOpen(false)} inverted>

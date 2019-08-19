@@ -26,6 +26,6 @@ jobs:
          name: Run Tests
          command: npm test 
       
-       - run:
+      - run:
          name: Run Linter
          command: tslint src/**/*.ts{,x} 
