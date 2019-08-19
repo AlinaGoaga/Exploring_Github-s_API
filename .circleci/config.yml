@@ -23,9 +23,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-         name: Run Tests
-         command: npm test 
+        name: Run Tests
+        command: npm test
       
       - run:
-         name: Run Linter
-         command: tslint src/**/*.ts{,x} 
+        name: Run Linter
+        command: tslint src/**/*.ts{,x}
