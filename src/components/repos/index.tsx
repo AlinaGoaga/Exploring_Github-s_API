@@ -1,6 +1,6 @@
 import React from "react";
 import GetRepos from "./getAllRepos";
-import { List } from "semantic-ui-react";
+import { Grid, Card, Loader } from "semantic-ui-react";
 import Repo from "../repo";
 
 const Repos: React.FC<{}> = () => {
@@ -10,19 +10,26 @@ const Repos: React.FC<{}> = () => {
 
   return (
     <>
-      {service.status === "loading" && <div>Loading</div>}
+      {service.status === "loading" && <Loader />}
       {service.status === "loaded" && (
-        <List>
-          {service.payload.map(repo => (
-            <List.Item>
-              <Repo
-                name={repo.name}
+        <Grid container={true} centered={true} padded={"vertically"}>
+         {service.payload.map(repo => (
+          <Grid.Column key={repo.id} mobile={12} tablet={8} computer={5}>
+            <Card>
+              <Card.Content>
+                <Card.Header>{repo.name}</Card.Header>
+                <Card.Meta>{repo.language}</Card.Meta>
+                <Card.Description>
+                <Repo
                 description={repo.description}
                 url={repo.html_url}
               />
-            </List.Item>
-          ))}
-        </List>
+                </Card.Description>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+        ))}
+      </Grid>
       )}
       {service.status === "error" && <div>Something went wrong.</div>}
     </>

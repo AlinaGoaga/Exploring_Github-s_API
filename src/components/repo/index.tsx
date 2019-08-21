@@ -1,26 +1,25 @@
 import React from "react";
 import { useState } from "react";
-import { Modal, Header, Button, Icon } from "semantic-ui-react";
+import { Modal, Header, Icon, Button } from "semantic-ui-react";
 
 export interface IProps {
-  name: string;
   description: string;
   url: string;
 }
 
-const Repo: React.FC<IProps> = ({ name, description, url }) => {
+const Repo: React.FC<IProps> = ({ description, url }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
       <Modal
         open={modalOpen}
-        trigger={<Button onClick={() => setModalOpen(true)}>{name}</Button>}
+        trigger={<Button onClick={() => setModalOpen(true)}>Find out more!</Button>}
         basic
         size="small"
       >
         <Header
-          icon="browser"
+          icon="folder"
           content={description || "No description available"}
         />
         <Modal.Content>
