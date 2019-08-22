@@ -4,7 +4,7 @@ import { IService } from "./serviceInterface";
 
 const GetRepos = ({ user = "", token = "" }) => {
   const [result, setResult] = useState<IService<Array<IRepo>>>({
-    status: "loading",
+    status: "loading"
   });
   let headers = {};
   if (token !== "") {
@@ -13,7 +13,7 @@ const GetRepos = ({ user = "", token = "" }) => {
 
   useEffect(() => {
     fetch(`https://api.github.com/users/${user}/repos`, {
-      headers,
+      headers
     })
       .then(response => response.json())
       .then(response => setResult({ status: "loaded", payload: response }))

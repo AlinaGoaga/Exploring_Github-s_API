@@ -14,7 +14,9 @@ const Repo: React.FC<IProps> = ({ description, url }) => {
     <>
       <Modal
         open={modalOpen}
-        trigger={<Button onClick={() => setModalOpen(true)}>Find out more!</Button>}
+        trigger={
+          <Button onClick={() => setModalOpen(true)}>Find out more!</Button>
+        }
         basic
         size="small"
       >
