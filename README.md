@@ -17,9 +17,7 @@ Build image:
 Push the image tagged github-api-app to Docker hub under the alinag1 repository:  
 `docker push alinag1/github-api-app`
 
-I have Docker Desktop installed and running so the repository attached to my account is recognized.
-
-![DockerDesktop](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/DockerDesktop.png)
+I am logged into Docker Desktop so the repository attached to my account is recognized.
 
 Create the deployment called my-app based on the image I am retrieving from Docker hub:  
 `kubectl create my-app --image=alinag1/github-api-app`
