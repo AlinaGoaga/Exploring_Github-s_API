@@ -8,9 +8,6 @@ This project is meant to help explore [Github's API](https://developer.github.co
 
 # Build image with Docker and run it locally on a K8s cluster
 
-To get image:  
-`docker pull alinag1/github-api-app`
-
 Build image:  
 `docker build . -t alinag1/github-api-app`
 
@@ -19,10 +16,13 @@ Push the image tagged github-api-app to Docker hub under the alinag1 repository:
 
 I am logged into Docker Desktop so the repository attached to my account is recognized.
 
-Create the deployment called my-app based on the image I am retrieving from Docker hub:  
+In case the image has been removed locally, run the below to get the image from Docker Hub:  
+`docker pull alinag1/github-api-app`
+
+Create the deployment called my-app based on the image I am retrieving from Docker Hub:  
 `kubectl create my-app --image=alinag1/github-api-app`
 
-Creates a clusterIP service (only accessible from the cluster; 11001 is the port exposed by nginx):  
+Create a clusterIP service (only accessible from the cluster; 11001 is the port exposed by nginx):  
 `kubectl expose deploy/my-app --port=11001`
 
 Check the resources created:  
