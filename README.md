@@ -2,39 +2,40 @@ This project is meant to help explore [Github's API](https://developer.github.co
 
 ## How to run
 
-Install dependencies: `npm install`
-Start server: `npm start`
-Run linting: `tslint --project . --fix`
+- Install dependencies: `npm install`
+- Start server: `npm start`
+- Run linting: `tslint --project . --fix`
 
 # Build image with Docker and run it locally on a K8s cluster
 
-To get image: `docker pull alinag1/github-api-app`
+To get image:  
+`docker pull alinag1/github-api-app`
 
-Build image:
+Build image:  
 `docker build . -t alinag1/github-api-app`
 
-Push the image tagged github-api-app to Docker hub under the alinag1 repository:
+Push the image tagged github-api-app to Docker hub under the alinag1 repository:  
 `docker push alinag1/github-api-app`
 
 I have Docker Desktop installed and running so the repository attached to my account is recognized.
 
-![DockerDesktop](https://github.com/AlinaGoaga/Exploring_Github-s_API/tree/master/src/assets/DockerDesktop.png)
+![DockerDesktop](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/DockerDesktop.png)
 
-Create the deployment called my-app based on the image I am retrieving from Docker hub:
+Create the deployment called my-app based on the image I am retrieving from Docker hub:  
 `kubectl create my-app --image=alinag1/github-api-app`
 
-Creates a clusterIP service (only accessible from the cluster; 11001 is the port exposed by nginx)
+Creates a clusterIP service (only accessible from the cluster; 11001 is the port exposed by nginx):  
 `kubectl expose deploy/my-app --port=11001`
 
-Check the resources created:
+Check the resources created:  
 `kubectl get all`
 
-![Deployment](https://github.com/AlinaGoaga/Exploring_Github-s_API/tree/master/src/assets/Deployment.png)
+![Deployment](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/Deployment.png)
 
-In order to access the app when using Docker Desktop (which runs on a small Linux VM rather the the host OS), we need to create a pod (in the example below this is called temporary shell and it is using the bash command from the bretfisher/netshoot image - available on Docker Hub):
+In order to access the app when using Docker Desktop (which runs on a small Linux VM rather the the host OS), we need to create a pod (in the example below this is called temporary shell and it is using the bash command from the bretfisher/netshoot image - available on Docker Hub):  
 `kubectl run --generator run-pod/v1 tmp-shell --rm -it --image bretfisher/netshoot -- bash`
 
-Once inside the shell, get access to the minified version of the application:
+Once inside the shell, get access to the minified version of the application:  
 `curl my-app:11001` (where my-app is the name of the service through which the deployment is exposed)
 
 If using Linux, we can apply curl without worrying about creating the additional pod described above.
