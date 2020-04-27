@@ -46,7 +46,7 @@ In order to get an external IP for the application (which would allow us to test
 - Once in the project, navigate to the Kubernetes Engine => Workloads on the left hand side menu
 - Choose Deploy from the top menu to create a Deployment (replace the default image with the your image and choose the cluster on which you want to deploy to)
   ![Container](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPContainer.png)
-  ![Configuration](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPConfiguration.png)
+  ![Configuration](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPConfig.png)
 - To expose the deployment and get an external IP, create a Load Balancing service in the deployment (replace the default port with that from the image being used)
   ![Expose](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/ExposeDeployment.png)
   ![GCPDeployment](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPDeployment.png)
