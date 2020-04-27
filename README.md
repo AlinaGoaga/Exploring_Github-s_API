@@ -6,7 +6,7 @@ This project is meant to help explore [Github's API](https://developer.github.co
 - Start server: `npm start`
 - Run linting: `tslint --project . --fix`
 
-# Build image with Docker and run it locally on a K8s cluster
+## Build image with Docker and run it locally on a K8s cluster
 
 Build image:  
 `docker build . -t alinag1/github-api-app`
@@ -37,6 +37,20 @@ Once inside the shell, get access to the minified version of the application:
 `curl my-app:11001` (where my-app is the name of the service through which the deployment is exposed)
 
 If using Linux, we can apply curl without worrying about creating the additional pod described above.
+
+In order to get an external IP for the application (which would allow us to test outside the cluster) we'd need to create a Load Balancing service which requires the services of a cloud provider.
+
+## Deploy with Kubernetes in GCP
+
+- Create a GCP account and add your project
+- Once in the project, navigate to the Kubernetes Engine => Workloads on the left hand side menu
+- Choose Deploy from the top menu to create a Deployment (replace the default image with the your image and choose the cluster on which you want to deploy to)
+  ![Container](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPContainer.png)
+  ![Configuration](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPConfiguration.png)
+- To expose the deployment and get an external IP, create a Load Balancing service in the deployment (replace the default port with that from the image being used)
+  ![Expose](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/ExposeDeployment.png)
+  ![GCPDeployment](https://github.com/AlinaGoaga/Exploring_Github-s_API/blob/master/src/assets/GCPDeployment.png)
+- To access the application: http://35.222.105:11001
 
 ## Note
 
